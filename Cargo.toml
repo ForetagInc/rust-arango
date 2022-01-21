@@ -1,0 +1,66 @@
+[package]
+name = "rust_arango"
+version = "0.1.0"
+edition = "2021"
+authors = [ 
+	"Guoli Lyu <guoli-lv@hotmail.com>", 
+	"Felix de Maneville <felix.maneville@gmail.com>",
+	"Chiru B <chirub@foretag.co>"
+]
+readme = "README.md"
+license = "MIT"
+description = "Rust driver for ArangoDB"
+repository = "https://github.com/ForetagInc/rust-arango"
+documentation = "https://docs.rs/rust-arango"
+keywords = [ "nosql", "database", "client", "driver", "arangoDB", "arango" ]
+exclude = [ ".gitignore", ".github", "tests/**/*", "examples" ]
+
+[package.metadata.docs.rs]
+all-features = false
+features = [ "rocksdb", "reqwest_async" ]
+
+[badges.maintenance]
+status = "actively-developed"
+
+[features]
+default = [ "rocksdb", "openssl" ]
+blocking = [ "maybe-async/is_sync", "reqwest/blocking" ]
+openssl = [ "reqwest/default-tls" ]
+rustls = [ "reqwest/rustls" ]
+cluster = [ ]
+enterprise = [ ]
+mmfiles = [ ]
+rocksdb = [ ]
+arango3_7 = [ ]
+
+[dependencies]
+async-trait = "0.1"
+base64 = "0.13"
+http = "0.2"
+log = "0.4"
+maybe-async = "0.2"
+serde_json = "1"
+serde_qs = "0.8"
+thiserror = "1"
+typed-builder = "0.9.1"
+url = "2"
+futures = "0.3"
+
+  [dependencies.serde]
+  version = "1"
+  features = [ "derive" ]
+
+  [dependencies.reqwest]
+  version = "0.11"
+  features = [ "gzip", "json", "stream" ]
+  default_features = false
+
+[dev-dependencies]
+env_logger = "0.9"
+pretty_assertions = "1.0"
+regex = "1.5"
+anyhow = "1"
+
+  [dev-dependencies.tokio]
+  version = "1"
+  features = [ "macros", "rt-multi-thread" ]
