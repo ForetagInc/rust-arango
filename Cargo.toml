@@ -12,7 +12,7 @@ license = "MIT"
 description = "Lib for ArangoDB Client on Rust"
 repository = "https://github.com/ForetagInc/rust-arango"
 documentation = "https://docs.rs/rust-arango"
-keywords = [ "nosql", "database", "client", "driver", "arangoDB", "arango" ]
+keywords = [ "database", "client", "driver", "arangoDB", "arango" ]
 exclude = [ ".gitignore", ".github", "tests/**/*", "examples" ]
 
 [package.metadata.docs.rs]
