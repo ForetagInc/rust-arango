@@ -1,41 +1,26 @@
-//! # arangors lite
-//!
-//! > `rust_arango` is a fork of [arangors](https://github.com/fMeow/arangors) by fMeow.
-//!
-//! [![Build Status](https://github.com/ManevilleF/arangors/workflows/linux.yml/badge.svg)](https://github.com/ManevilleF/arangors/actions)
-//! [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-//! [![Crates.io](https://img.shields.io/crates/v/rust_arango.svg)](https://crates.io/crates/rust_arango)
-//! [![arangors](https://docs.rs/rust_arango/badge.svg)](https://docs.rs/rust_arango)
-//! [![dependency status](https://deps.rs/crate/rust_arango/0.1.0/status.svg)](https://deps.rs/crate/rust_arango)
+//! # rust_arango
 //!
 //!
-//! `arangors` is an intuitive rust client for [ArangoDB](https://www.arangodb.com/),
-//! inspired by [pyArango](https://github.com/tariqdaouda/pyArango).
+//! ## Philosophy of rust_arango
 //!
-//! `arangors` enables you to connect with ArangoDB server, access to database,
-//! execute AQL query, manage ArangoDB in an easy and intuitive way,
-//! both `async` and plain synchronous code with any HTTP ecosystem you love.
-//!
-//! ## Philosophy of arangors
-//!
-//! `arangors` is targeted at ergonomic, intuitive and OOP-like API for
+//! `rust_arango` is targeted at ergonomic, intuitive and OOP-like API for
 //! ArangoDB, both top level and low level API for users' choice.
 //!
 //! Overall architecture of ArangoDB:
 //!
 //! > databases -> collections -> documents/edges
 //!
-//! In fact, the design of `arangors` just mimic this architecture, with a
+//! In fact, the design of `rust_arango` just mimic this architecture, with a
 //! slight difference that in the top level, there is a connection object on top
 //! of databases, containing a HTTP client with authentication information in
 //! HTTP headers.
 //!
-//! Hierarchy of arangors:
+//! Hierarchy of rust_arango:
 //! > connection -> databases -> collections -> documents/edges
 //!
 //! ## Features
 //!
-//! By now, the available features of arangors are:
+//! By now, the available features of rust_arango are:
 //!
 //! - make connection to ArangoDB
 //! - get list of databases and collections
@@ -51,22 +36,22 @@
 //! ```toml
 //! [dependencies]
 //! ## This one is async
-//! arangors = { version = "0.4" }
+//! rust_arango = { version = "0.4" }
 //! ## This one is synchronous
-//! arangors = { version = "0.4", features = ["blocking"] }
+//! rust_arango = { version = "0.4", features = ["blocking"] }
 //! ```
 //!
-//! Thanks to `maybe_async`, `arangors` can unify sync and async API and toggle
-//! with a feature gate. Arangors adopts async first policy.
+//! Thanks to `maybe_async`, `rust_arango` can unify sync and async API and toggle
+//! with a feature gate. rust_arango adopts async first policy.
 //!
 //! By default `reqwest` uses OpenSSL. To use `rustls` you may disable default features and use the `rustls` feature:
 //!
 //! ```toml
 //! [dependencies]
 //! ## This one uses openssl
-//! arangors = { version = "0.4" }
+//! rust_arango = { version = "0.4" }
 //! ## This one rustls
-//! arangors = { version = "0.4", features = ["rustls"], default-features = false }
+//! rust_arango = { version = "0.4", features = ["rustls"], default-features = false }
 //! ```
 //!
 //! ### Connection
@@ -76,7 +61,7 @@
 //! - basic auth
 //! - no authentication
 //!
-//! So are the `arangors` API.
+//! So are the `rust_arango` API.
 //!
 //! Example:
 //!
@@ -179,7 +164,7 @@
 //!
 //! #### Batch query
 //!
-//! `arangors` offers a way to manually handle batch query.
+//! `rust_arango` offers a way to manually handle batch query.
 //!
 //! Use `aql_query_batch` to get a cursor, and use `aql_next_batch` to fetch
 //! next batch and update cursor with the cursor.
@@ -335,7 +320,7 @@
 //!
 //! ### License
 //!
-//! `arangors` is provided under the MIT license. See [LICENSE](./LICENSE).
+//! `rust_arango` is provided under the MIT license. See [LICENSE](./LICENSE).
 //! An ergonomic [ArangoDB](https://www.arangodb.com/) client for rust.
 
 pub use crate::connection::Connection;
