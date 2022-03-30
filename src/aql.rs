@@ -36,7 +36,7 @@ pub struct AqlQuery<'a> {
     /// bind parameters to substitute in query string
     #[serde(skip_serializing_if = "HashMap::is_empty")]
     #[builder(default)]
-    bind_vars: HashMap<&'a str, Value>,
+    bind_vars: HashMap<String, Value>,
 
     /// Indicates whether the number of documents in the result set should be
     /// returned in the "count" attribute of the result.
@@ -123,7 +123,7 @@ impl<'a, __query, __count, __batch_size, __cache, __memory_limit, __ttl, __optio
         'a,
         (
             __query,
-            (HashMap<&'a str, Value>,),
+            (HashMap<String, Value>,),
             __count,
             __batch_size,
             __cache,
@@ -133,7 +133,7 @@ impl<'a, __query, __count, __batch_size, __cache, __memory_limit, __ttl, __optio
         ),
     >
     where
-        K: Into<&'a str>,
+        K: Into<String>,
         V: Into<Value>,
     {
         let mut bind_vars = HashMap::new();
@@ -164,7 +164,7 @@ impl<'a, __query, __count, __batch_size, __cache, __memory_limit, __ttl, __optio
             'a,
             (
                 __query,
-                (HashMap<&'a str, Value>,),
+                (HashMap<String, Value>,),
                 __count,
                 __batch_size,
                 __cache,
@@ -176,7 +176,7 @@ impl<'a, __query, __count, __batch_size, __cache, __memory_limit, __ttl, __optio
         serde_json::Error,
     >
     where
-        K: Into<&'a str>,
+        K: Into<String>,
         V: serde::Serialize,
     {
         Ok(self.bind_var(key, serde_json::to_value(value)?))
@@ -190,7 +190,7 @@ impl<'a, __query, __count, __batch_size, __cache, __memory_limit, __ttl, __optio
         'a,
         (
             __query,
-            (HashMap<&'a str, Value>,),
+            (HashMap<String, Value>,),
             __count,
             __batch_size,
             __cache,
@@ -209,7 +209,7 @@ impl<'a, __query, __count, __batch_size, __cache, __memory_limit, __ttl, __optio
         'a,
         (
             __query,
-            (HashMap<&'a str, Value>,),
+            (HashMap<String, Value>,),
             __count,
             __batch_size,
             __cache,
@@ -219,7 +219,7 @@ impl<'a, __query, __count, __batch_size, __cache, __memory_limit, __ttl, __optio
         ),
     >
     where
-        K: Into<&'a str>,
+        K: Into<String>,
         V: Into<Value>,
     {
         (self.fields.1).0.insert(key.into(), value.into());
@@ -236,7 +236,7 @@ impl<'a, __query, __count, __batch_size, __cache, __memory_limit, __ttl, __optio
             'a,
             (
                 __query,
-                (HashMap<&'a str, Value>,),
+                (HashMap<String, Value>,),
                 __count,
                 __batch_size,
                 __cache,
@@ -248,7 +248,7 @@ impl<'a, __query, __count, __batch_size, __cache, __memory_limit, __ttl, __optio
         serde_json::Error,
     >
     where
-        K: Into<&'a str>,
+        K: Into<String>,
         V: serde::Serialize,
     {
         Ok(self.bind_var(key, serde_json::to_value(value)?))
@@ -474,9 +474,9 @@ mod test {
         let aql = AqlQuery::builder()
             .query(q)
             // test the first bind
-            .bind_var("username", "test2")
+            .bind_var("username".to_string(), "test2")
             // test the second bind
-            .bind_var("password", "test2_pwd")
+            .bind_var("password".to_string(), "test2_pwd")
             .count(true)
             .batch_size(256)
             .cache(false)

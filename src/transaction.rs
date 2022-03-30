@@ -334,7 +334,7 @@ impl Transaction {
     pub async fn aql_bind_vars<R>(
         &self,
         query: &str,
-        bind_vars: HashMap<&str, Value>,
+        bind_vars: HashMap<String, Value>,
     ) -> Result<Vec<R>, ClientError>
     where
         R: DeserializeOwned,

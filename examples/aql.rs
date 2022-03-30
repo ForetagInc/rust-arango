@@ -50,8 +50,8 @@ async fn main() {
     let json = serde_json::to_value(&user).unwrap();
     let aql = AqlQuery::builder()
         .query("INSERT @user INTO @@collection LET result = NEW RETURN result")
-        .bind_var("@collection", collection)
-        .bind_var("user", json)
+        .bind_var("@collection".to_string(), collection)
+        .bind_var("user".to_string(), json)
         .build();
 
     let result: Vec<User> = database.aql_query(aql).await.unwrap();
@@ -65,8 +65,8 @@ async fn main() {
     // use try_bind for any serializable struct
     let aql = AqlQuery::builder()
         .query("INSERT @user INTO @@collection LET result = NEW RETURN result")
-        .bind_var("@collection", collection)
-        .try_bind("user", jane_doe)
+        .bind_var("@collection".to_string(), collection)
+        .try_bind("user".to_string(), jane_doe)
         .unwrap()
         .build();
 
@@ -79,9 +79,9 @@ async fn main() {
         email: "homer.sompson@springfield.com".to_string(),
     };
 
-    let mut map: HashMap<&str, Value> = HashMap::new();
-    map.insert("@collection", Value::from(collection));
-    map.insert("user", serde_json::to_value(homer_simpson).unwrap());
+    let mut map: HashMap<String, Value> = HashMap::new();
+    map.insert("@collection".to_string(), Value::from(collection));
+    map.insert("user".to_string(), serde_json::to_value(homer_simpson).unwrap());
 
     // use bind_vars to pass a HashMap of bind variables
     let aql = AqlQuery::builder()

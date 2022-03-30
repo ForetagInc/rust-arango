@@ -1,11 +1,12 @@
 [package]
 name = "rust_arango"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = [ 
 	"Guoli Lyu <guoli-lv@hotmail.com>", 
 	"Felix de Maneville <felix.maneville@gmail.com>",
-	"Chiru B <chirub@foretag.co>"
+	"Chiru B <chirub@foretag.co>",
+	"Kenneth Gómez <kenneth.gomez@foretag.co>"
 ]
 readme = "README.md"
 license = "MIT"
